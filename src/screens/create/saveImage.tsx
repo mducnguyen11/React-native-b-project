@@ -2,26 +2,38 @@ import React from "react";
 import { View, Image, TouchableOpacity, FlatList, StyleSheet } from "react-native";
 
 const images = [
-  { id: "1", uri: "https://images.pexels.com/photos/927497/pexels-photo-927497.jpeg?auto=compress&cs=tinysrgb&w=600" },
-  { id: "2", uri:  "https://images.pexels.com/photos/1068554/pexels-photo-1068554.jpeg?auto=compress&cs=tinysrgb&w=600" },
-  { id: "3", uri: "https://images.pexels.com/photos/2578370/pexels-photo-2578370.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=252&fit=crop&h=408" },
-  { id: "4", uri: "https://images.pexels.com/photos/3973557/pexels-photo-3973557.jpeg?auto=compress&cs=tinysrgb&h=204&fit=crop&w=228&dpr=2" },
-  { id: "5", uri: "https://images.pexels.com/photos/1904354/pexels-photo-1904354.jpeg?auto=compress&cs=tinysrgb&h=204&fit=crop&w=228&dpr=2" },
-  { id: "6", uri: "https://media.istockphoto.com/id/1170804921/vi/anh/c%E1%BA%ADn-c%E1%BA%A3nh-r%C3%B9a-v%E1%BB%9Bi-tr%C6%B0%E1%BB%9Dng-c%C3%A1.jpg?b=1&s=612x612&w=0&k=20&c=KJdt2nxHUjVjZ0BGp3MAdEVNnlAlfhWBpLVImaZXznw=" },
+  {
+    title: 'The lizard is staring at something',
+    image: 'https://images.pexels.com/photos/927497/pexels-photo-927497.jpeg?auto=compress&cs=tinysrgb&w=600',
+  },
+  {
+    title: '2 pandas accidentally got lost in my garden',
+    image:
+      'https://c1danghaihp.edu.vn/wp-content/uploads/2022/12/1671646095_410_Hinh-anh-Gau-Truc-cute-de-thuong-dep-nhat.jpg',
+  },
+  {
+    title: 'I just took a picture of this creature, is it a dragon?',
+    image:
+      'https://assets.rebelmouse.io/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy8xMDQ1NjEzMy9vcmlnaW4uanBnIiwiZXhwaXJlc19hdCI6MTcyNTczMjIwNX0.hf9VoE2E76CzGVDBxfrmRxMUxX_vvTHIiIUk-_LuRuU/img.jpg?width=400&height=209',
+  },
+  {
+    title: 'I feel sad every time it rains',
+    image: 'https://danviet.mediacdn.vn/thumb_w/650/296231569849192448/2023/1/24/base64-16745651304841054353937.png',
+  },
 ];
 
 const SaveImage = () => {
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item } : {item : {title : string, image : string}}) => (
     <TouchableOpacity style={styles.imageContainer}>
-      <Image source={{ uri: item.uri }} style={styles.image} />
+      <Image source={{ uri: item.image }} style={styles.image} />
     </TouchableOpacity>
   );
 
   return (
     <FlatList
       data={images}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.title}
       numColumns={2}
       renderItem={renderItem}
       contentContainerStyle={styles.container}
