@@ -2,6 +2,7 @@ import { createStackNavigator, StackNavigationOptions } from '@react-navigation/
 import React from 'react';
 import { defaultStackOptions } from '../home/HomeStackNavigator';
 import MyProfileScreen from './MyProfileScreen';
+import CreatePost from "../create/createPost";
 
 export type ProfileParamList = {
   ROUTE_MY_PROFILE: undefined;
@@ -14,8 +15,8 @@ const ProfileStack = () => {
     <Stack.Navigator screenOptions={defaultStackOptions}>
       <Stack.Screen
         name={'ROUTE_MY_PROFILE'}
-        component={MyProfileScreen}
-        options={{ headerShown: true, headerTitle: 'Profile' }}
+        component={CreatePost}
+        options={{ headerShown: false, headerTitle: 'Create new post' }}
       />
     </Stack.Navigator>
   );

@@ -1,9 +1,14 @@
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { FC } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, TextInput, Image, FlatList, ScrollView} from 'react-native';
 import { ROUTE_HOMEPAGE_SECOND_SCREEN } from '../../navigation/Routes';
 import { HomeParamList } from './HomeStackNavigator';
+import searchIc from '../../assets/icons/search-interface-symbol.png';
+import Button from "./Button";
+import {Dimensions} from 'react-native';
+import AutoHeightImage from 'react-native-auto-height-image';
+import Post from "./Post";
 
 type HomePageRouteProp = RouteProp<HomeParamList, 'ROUTE_HOMEPAGE'>;
 type HomePageNavigationProp = StackNavigationProp<HomeParamList, 'ROUTE_HOMEPAGE'>;
@@ -13,21 +18,42 @@ interface Props {
   route: HomePageRouteProp;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+const data = [
+  "https://images.pexels.com/photos/927497/pexels-photo-927497.jpeg?auto=compress&cs=tinysrgb&w=600",
+  "https://images.pexels.com/photos/1068554/pexels-photo-1068554.jpeg?auto=compress&cs=tinysrgb&w=600",
+  "https://images.pexels.com/photos/2578370/pexels-photo-2578370.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=252&fit=crop&h=408",
+  "https://images.pexels.com/photos/3973557/pexels-photo-3973557.jpeg?auto=compress&cs=tinysrgb&h=204&fit=crop&w=228&dpr=2",
+  "https://images.pexels.com/photos/1904354/pexels-photo-1904354.jpeg?auto=compress&cs=tinysrgb&h=204&fit=crop&w=228&dpr=2",
+  "https://media.istockphoto.com/id/1170804921/vi/anh/c%E1%BA%ADn-c%E1%BA%A3nh-r%C3%B9a-v%E1%BB%9Bi-tr%C6%B0%E1%BB%9Dng-c%C3%A1.jpg?b=1&s=612x612&w=0&k=20&c=KJdt2nxHUjVjZ0BGp3MAdEVNnlAlfhWBpLVImaZXznw="
+]
+
 const HomepageScreen: FC<Props> = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.headerText}>NEF Store</Text>
-      <TouchableOpacity onPress={() => navigation.navigate(ROUTE_HOMEPAGE_SECOND_SCREEN)}>
-        <Text>Navigate</Text>
-      </TouchableOpacity>
-    </View>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+      <View style={styles.headerContainer}>
+        <TextInput placeholder={"Search here ..."} style={styles.headerInput} />
+        <View style={styles.searchBtn}>
+          <Image style={{tintColor:'#ffffff'}} source={searchIc} />
+        </View>
+      </View>
+      <View style={styles.buttons}>
+        <Button />
+        <Button isActive={true} title={'New'} />
+        <Button title={'Top'} />
+      </View>
+      <Post />
+      <Post />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FFFFFF',
   },
   headerText: {
     fontFamily: 'Roboto-Bold',
@@ -35,6 +61,43 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginLeft: 10,
   },
+  headerContainer:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth : 1,
+    borderColor :  "#DDDDDD" ,
+    padding: 12,
+    paddingVertical: 16
+  },
+  headerInput:{
+    height: 44,
+    flexGrow : 1,
+    borderWidth: 1,
+    borderColor: "#DDDDDD" ,
+    borderRadius: 22,
+    paddingHorizontal: 20
+  },
+  searchBtn:{
+    height: 44,
+    width: 44,
+    borderRadius: 22,
+    backgroundColor: "#FD5B32",
+    marginLeft: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  buttons:{
+    flexDirection: 'row',
+    flexWrap: "wrap",
+    marginVertical: 16,
+    paddingHorizontal: 12,
+    justifyContent: 'space-between',
+    marginBottom: 6
+  },
+  image:{
+    width: ( windowWidth / 2 ) - 10,
+  }
 });
 
 export default HomepageScreen;

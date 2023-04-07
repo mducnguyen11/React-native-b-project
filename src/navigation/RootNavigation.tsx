@@ -17,21 +17,6 @@ export type ModalNavigatorParamList = {
 const ModalStack = createStackNavigator<ModalNavigatorParamList>();
 
 const RootNavigation = () => {
-  const { token } = useAuth();
-
-  useEffect(() => {
-    if (!token) {
-      navigationRef.current?.reset({
-        index: 0,
-        routes: [{ name: ROUTE_GUEST_NAVIGATOR }],
-      });
-    } else {
-      navigationRef.current?.reset({
-        index: 0,
-        routes: [{ name: ROUTE_APP_NAVIGATOR }],
-      });
-    }
-  }, [token]);
 
   return (
     <NavigationContainer ref={navigationRef}>
@@ -41,7 +26,6 @@ const RootNavigation = () => {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}>
         <ModalStack.Screen name={ROUTE_APP_NAVIGATOR} component={AppNavigation} />
-        <ModalStack.Screen name={ROUTE_GUEST_NAVIGATOR} component={GuestNavigation} />
       </ModalStack.Navigator>
     </NavigationContainer>
   );

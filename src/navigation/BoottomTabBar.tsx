@@ -1,6 +1,10 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import {StyleSheet, TouchableOpacity, View, Text, Image} from 'react-native';
+import homeIcon from '../../src/assets/icons/home.png';
+import {ROUTE_CREATE_NAVIGATOR, ROUTE_HOME_NAVIGATOR} from "./Routes";
+import addIcon from '../../src/assets/icons/add.png';
+import saveIcon from '../../src/assets/icons/save-instagram.png';
 
 const BoottomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   return (
@@ -35,9 +39,19 @@ const BoottomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) =>
           });
         };
 
+        const whichIcon = () => {
+          if(route.name == ROUTE_HOME_NAVIGATOR){
+            return <Image source={homeIcon} />
+          }
+          if(route.name == ROUTE_CREATE_NAVIGATOR){
+            return <Image source={addIcon} />
+          }
+          return <Image source={saveIcon} />
+        }
+
         return (
           <TouchableOpacity key={route.key} onPress={onPress} onLongPress={onLongPress} style={styles.tabItem}>
-            <Text style={{ color: isFocused ? '#2f95dc' : '#000' }}>{label as string}</Text>
+            {whichIcon()}
           </TouchableOpacity>
         );
       })}

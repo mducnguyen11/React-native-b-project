@@ -16,6 +16,7 @@ export const defaultStackOptions: StackNavigationOptions = {
   headerBackTitleVisible: false,
   headerLeft: undefined,
   cardShadowEnabled: false,
+  headerShown: false,
   headerTitleStyle: {
     fontSize: 16,
     fontWeight: '800',
@@ -35,11 +36,6 @@ const HomeStackNavigator = () => {
   return (
     <Stack.Navigator initialRouteName={ROUTE_HOMEPAGE} screenOptions={defaultStackOptions}>
       <Stack.Screen name={ROUTE_HOMEPAGE} component={HomepageScreen} options={{ headerShown: false }} />
-      <Stack.Screen
-        name={ROUTE_HOMEPAGE_SECOND_SCREEN}
-        component={HomepageSecondScreen}
-        options={{ headerShown: false }}
-      />
     </Stack.Navigator>
   );
 };
