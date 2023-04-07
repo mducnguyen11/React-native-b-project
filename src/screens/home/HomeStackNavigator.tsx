@@ -1,8 +1,7 @@
 import { CardStyleInterpolators, createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import React from 'react';
 import { ROUTE_HOMEPAGE, ROUTE_HOMEPAGE_SECOND_SCREEN } from '../../navigation/Routes';
-import HomepageScreen from './HomepageScreen';
-import HomepageSecondScreen from './HomepageSecondScreen';
+import {View, ImageBackground } from "react-native";
 
 export type HomeParamList = {
   [ROUTE_HOMEPAGE]: undefined;
@@ -31,17 +30,8 @@ export const defaultStackOptions: StackNavigationOptions = {
   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
 };
 
-const HomeStackNavigator = () => {
-  return (
-    <Stack.Navigator initialRouteName={ROUTE_HOMEPAGE} screenOptions={defaultStackOptions}>
-      <Stack.Screen name={ROUTE_HOMEPAGE} component={HomepageScreen} options={{ headerShown: false }} />
-      <Stack.Screen
-        name={ROUTE_HOMEPAGE_SECOND_SCREEN}
-        component={HomepageSecondScreen}
-        options={{ headerShown: false }}
-      />
-    </Stack.Navigator>
-  );
+const HelloSlide = () => {
+  return <View></View>;
 };
 
-export default HomeStackNavigator;
+export default HelloSlide;
